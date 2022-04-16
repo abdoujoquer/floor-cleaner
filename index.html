@@ -44,6 +44,16 @@
     padding: 0;
    
 }
+.textual-buttons-container
+    display: flex !important;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.option-name{
+    font-size: 15px;
+    font-weight: 600 !important;
+    display: block;
+}
       
 </style>
 
@@ -65,6 +75,7 @@
     }</style><style type="text/css">/* Slider */
 
 }
+
 
   </style>
   <!-- JS -->
@@ -90,13 +101,33 @@
             <div class="product-section preview-wrapper"><!----> <div class="product-slider product-slider-mobile slick-w4kd31646665815949"><div class="preview"><ul class="list-unstyled preview-slider preview-slider-desktop slick-initialized slick-slider"><div aria-live="polite" class="slick-list draggable"><div class="slick-track" role="listbox" style="opacity: 1; width: 3420px; transform: translate3d(0px, 0px, 0px);" v-for="(item, index) in items" v-if="currentFilter === item.category || currentFilter === 'all'" :key="item.id"><li class="preview-item slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide30" style="width: 380px;"><img :src="item.image" data-src="" alt="" class="image-desktop"></li></div></div></ul></div> </div></div>
         <div class="product-section price-section" v-for="(item, index) in items" v-if="currentFilter === item.category || currentFilter === 'all'" :key="item.id" ><h3 class="single-price">
         <span class="after currency-value">
-          <span class="product__price">{{ item.price | formatCurrency }}  </span>
+          <span class="product__price" :value="total">{{total}}  </span>
           <span class="currency">&nbsp;د.ج</span></span>
          <span class="before currency-value"><span class="value">{{ item.price1 | formatCurrency }}</span>
-         <span class="currency">&nbsp;د.ج</span></span></h3></div><!----><div id="express-checkout-section" class="product-section checkout-section"><div class="checkout" style="padding: 20px; box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 20px 0px; border-radius: 7px;"><div class="main">
+         <span class="currency">&nbsp;د.ج</span></span></h3>
+        <p></p>
+        
+       
+       
+              </div><!----><div id="express-checkout-section" class="product-section checkout-section"><div class="checkout" style="padding: 20px; box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 20px 0px; border-radius: 7px;"><div class="main">
           
           
-          <form id="sign_up_user" action="thenkyou.html"  method="get" name="google-sheet" > <div class="checkout-form"><div class="checkout-groups"><h2 class="checkout-heading">معلومات الزبون</h2> 
+          <form id="sign_up_user" action="thenkyou.html"  method="get" name="google-sheet" > 
+            <div class="single-variant"><span class="option-name" style="font-size: 18px;
+              font-weight: 600;
+              display: block;">الكمية</span> <p></p><div class="textual-buttons-container" style="display: flex !important;
+              align-items: center;flex-wrap: wrap;">
+              <div class="textual-button" v-model="wilayaPrice" >
+                <input v-model="wilayaPrice" type="radio" name="quantity" id="الكمية-3 قارورات" value="0"> 
+                <label for="الكمية-3 قارورات">3 قارورات</label></div><div class="textual-button" >
+                  <input v-model="wilayaPrice" type="radio" name="quantity" id="الكمية-6 قارورات بتخفيض اضافي" value="850"> 
+               <label for="الكمية-6 قارورات بتخفيض اضافي">6 قارورات بتخفيض اضافي</label></div><div class="textual-button">
+                    <input v-model="wilayaPrice" type="radio" name="quantity" id="الكمية-9 قارورات بتخفيض اضافي + التوصيل مجاني" value="1750">
+              <label for="الكمية-9 قارورات بتخفيض اضافي + التوصيل مجاني">9 قارورات بتخفيض اضافي + التوصيل مجاني</label></div></div></div>        
+           
+             
+            
+            <div class="checkout-form"><div class="checkout-groups"><h2 class="checkout-heading">معلومات الزبون</h2> 
 
 
 
@@ -122,11 +153,12 @@
   
   </select></div> <!----></div>
    <!---->
-   
+ 
    <div class="form-group is-required"><div class=""><label for="FullName" class="form-label"> أدخل عنوانك👇</label> <input type="text" id="adress" name="adress" placeholder="العنوان" required>
   
    
    
+
    <!----></div>
      <!----></div> <!----></div> <!----> <!---->
      <div class="product-section add-to-cart-section"> 
@@ -253,7 +285,7 @@ function topFunction() {
 
 
 <script>
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbxokkvoFE8pJRDX_sxGf97kxLP_jJ85B6sNsFkNYIhJKrLTUuDFEfjLrhN1XKm4KVqg/exec'
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzQdoBvQHeVwezDSGd6hIK8LHKbH2xraKhFXl4sLTcGzVxCbymDbDt27QqCoHvBzeaJ/exec'
   const form = document.forms['google-sheet']
 
   form.addEventListener('submit', e => {
