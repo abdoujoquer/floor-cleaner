@@ -64,7 +64,7 @@ new Vue({
 		total() {
 			let total = 0;
 			this.cartItems.forEach(item => {
-				total += (item.price * item.quantity  );
+				total += (item.price * item.quantity + + 1350 );
 			});
 			return total + +this.wilayaPrice ;
 		}
